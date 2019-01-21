@@ -1,37 +1,37 @@
 pipeline { 
     agent any 
     environment {
-        mvn_home = tool name: 'M3', type: 'maven'
-        dockerrun = 'docker run -p 9090:8080 -d --name WebappContainer2 sailavanya/mydockerhub:webappFrmJenkins'
+        m3 = tool name: 'mvn_home', type: 'maven'
+        dockerrun = 'docker run -p 9090:8080 -d --name WebappContainer2 sindhuja1/sindhujasirimalla:webappFrmJenkins'
     }
     stages {
         stage('SCM-Checkout') { 
             steps { 
-                git credentialsId: 'git-credentials', url: 'https://github.com/lavanyaVarry/MyFirstWebApp.git'  
+                git credentialsId: 'git-credentials', url: 'https://github.com/SindhujaSirimalla/devops_maven.git'  
             }
         }
         stage('Build'){
             steps {
-                sh "'${mvn_home}/bin/mvn' clean package"
+                sh "'${m3}/bin/mvn' clean package"
             }
         }
         stage('Build-Docker-Image') {
             steps {
-                sh "docker build -t sailavanya/mydockerhub:webappFrmJenkins ."
+                sh "docker build -t sindhuja/sindhujasindhuja:webappFrmJenkins ."
             }
         }
         stage('Push-Image-To-Hub'){
             steps{
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'pwd', usernameVariable: 'username')]) {
-                    sh "docker login -u '${username}' -p '${pwd}'"
-                    sh "docker push sailavanya/mydockerhub:webappFrmJenkins"
+                    sh "docker login -u '${dockerusername}' -p '${dockerpassword}'"
+                    sh "docker push sindhuja1/sindhujasirimlla:webappFrmJenkins"
                 }
             }
         }
         stage('Deploy-To-Remote-Server'){
             steps{
                 sshagent(['webappserver']) {
-                    sh "ssh -o StrictHostKeyChecking=no webserver@webappserver.centralus.cloudapp.azure.com ${dockerrun}"
+                    sh "ssh -o StrictHostKeyChecking=no webserver@webserver19.centralus.cloudapp.azure.com ${dockerrun}"
                 }
             }
         }
