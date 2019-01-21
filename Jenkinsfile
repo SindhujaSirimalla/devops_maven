@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Build-Docker-Image') {
             steps {
-                sh "docker build -t sindhuja/sindhujasindhuja:webappFrmJenkins ."
+                sh "docker build -t sindhuja1/sindhujasindhuja:webappFrmJenkins ."
             }
         }
         stage('Push-Image-To-Hub'){
