@@ -1,7 +1,7 @@
 pipeline { 
     agent any 
     environment {
-        m3 = tool name: 'mvn_home', type: 'maven'
+        m3 = tool name: 'maven_home', type: 'maven'
         dockerrun = 'docker run -p 9090:8080 -d --name WebappContainer2 sindhuja1/sindhujasirimalla:webappFrmJenkins'
     }
     stages {
