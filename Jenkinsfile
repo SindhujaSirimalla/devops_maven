@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Push-Image-To-Hub'){
             steps{
-                withCredentials([usernamePassword(credentialsId: 'dockercredentials', passwordVariable: 'pwd', usernameVariable: 'username')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockercredentials', passwordVariable: 'dockerpassword', usernameVariable: 'dockerusername')]) {
                     sh "docker login -u '${dockerusername}' -p '${dockerpassword}'"
                     sh "docker push sindhuja1/sindhujasirimlla:webappFrmJenkins"
                 }
