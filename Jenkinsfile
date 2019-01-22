@@ -24,7 +24,7 @@ pipeline {
             steps{
                 withCredentials([usernamePassword(credentialsId: 'dockercredentials', passwordVariable: 'dockerpassword', usernameVariable: 'dockerusername')]) {
                     sh "docker login -u '${dockerusername}' -p '${dockerpassword}'"
-                    sh "docker push sindhuja1/sindhujasirimlla:webappFrmJenkins"
+                    sh "docker push sindhuja1/sindhujasirimalla:webappFrmJenkins"
                 }
             }
         }
