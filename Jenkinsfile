@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Deploy-To-Remote-Server'){
             steps{
-                sshagent(['webserver19']) {
+                sshagent(['webserverprivatekey']) {
                     sh "ssh -o StrictHostKeyChecking=no Sindhuja@webserver19.centralus.cloudapp.azure.com ${dockerrun}"
                 }
             }
