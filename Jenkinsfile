@@ -2,7 +2,7 @@ pipeline {
     agent any 
     environment {
         m3 = tool name: 'maven_home', type: 'maven'
-        dockerrun = 'docker run -p 9090:8080 -d --name WebappContainer2 sindhuja1/sindhujasirimalla:webappFrmJenkins'
+        dockerrun = 'docker run -p 8081:8080 -d --name WebappContainer2 sindhuja1/sindhujasirimalla:webappFrmJenkins'
     }
     stages {
         stage('SCM-Checkout') { 
